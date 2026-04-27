@@ -1,24 +1,72 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>todo list</title>
-    <link rel="stylesheet" href="src/output.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo UI</title>
+<link rel="stylesheet" href="src/output.css">
 </head>
-<body>
-    <div>
-    <h1 class="mt-100 ml-150 text-3xl">MY TODO LIST UI</h1>
-    <p class="ml-150 mt-4">Add your tasks below:</p>
 
+<body class="bg-pink-100 flex items-center justify-center min-h-screen">
 
-    <input type="text" class="ml-150 mt-10 p-2 border border-gray-300 rounded" placeholder="Enter a task">
-    <button class="ml-10 mt-10 p-2 bg-green-500 text</b-white rounded">Add Task</button>
+  <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
+
     
-    
-    <button class="ml-10 mt-10 p-2 bg-red-500 text-white rounded">Remove Task</button>
+    <h1 class="text-2xl font-bold text-center mb-2">My Todo List</h1>
+    <p class="text-gray-500 text-center mb-6">Stay organized </p>
 
+    
+    <div class="flex gap-2 mb-6">
+      <input 
+        type="text" 
+        placeholder="Add a new task..."
+        class="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+      >
+      <button class="bg-blue-500 text-white px-4 rounded-lg hover:bg-blue-600">
+        Add
+      </button>
     </div>
+
     
+    <ul class="space-y-3">
+
+      
+      <li class="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
         
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-5 h-5">
+          <span>Finish JavaScript assignment</span>
+        </div>
+
+      </li>
+      <li class="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
+        
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-5 h-5">
+          <span>read book</span>
+        </div>
+
+      </li>
+      <li class="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
+        
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-5 h-5">
+          <span>go to gym</span>
+        </div>
+
+      </li>
+            <li class="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
+        
+        <div class="flex items-center gap-3">
+          <input type="checkbox" class="w-5 h-5">
+          <span>go for shopping</span>
+        </div>
+
+      </li>
+
+
+    </ul>
+
+
 </body>
 </html>
