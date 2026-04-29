@@ -3,70 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo UI</title>
-<link rel="stylesheet" href="src/output.css">
+  <title>Todo App</title>
+
+  <link rel="stylesheet" href="src/output.css">
 </head>
 
 <body class="bg-pink-100 flex items-center justify-center min-h-screen">
 
   <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
 
-    
     <h1 class="text-2xl font-bold text-center mb-2">My Todo List</h1>
-    <p class="text-gray-500 text-center mb-6">Task organized </p>
+    <p class="text-gray-500 text-center mb-6">Task organized</p>
 
     
     <div class="flex gap-2 mb-6">
       <input 
+        id="input"
         type="text" 
         placeholder="Add a new task..."
         class="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
       >
-      <button class="bg-blue-500 text-white px-4 rounded-lg hover:bg-blue-600">
+
+      <button 
+        id="addBtn"
+        class="bg-blue-500 text-white px-4 rounded-lg hover:bg-blue-600">
         Add
       </button>
     </div>
 
     
-    <ul class="space-y-3">
+    <ul id="list" class="space-y-3"></ul>
 
-      
-      <li class="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
-        
+  </div>
+
+
+  <script>
+    let input = document.getElementById("input");
+    let btn = document.getElementById("addBtn");
+    let list = document.getElementById("list");
+
+    // Add task
+    btn.addEventListener("click", function () {
+      let value = input.value;
+
+      if (value === "") return;
+
+      let li = document.createElement("li");
+
+      li.className = "flex items-center justify-between bg-gray-100 p-3 rounded-lg";
+
+      li.innerHTML = `
         <div class="flex items-center gap-3">
-          <input type="checkbox" class="w-5 h-5">
-          <span>Finish JavaScript assignment</span>
+          <input type="checkbox" class="check w-5 h-5">
+          <span>${value}</span>
         </div>
+      `;
 
-      </li>
-      <li class="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
-        
-        <div class="flex items-center gap-3">
-          <input type="checkbox" class="w-5 h-5">
-          <span>read book</span>
-        </div>
+      list.appendChild(li);
 
-      </li>
-      <li class="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
-        
-        <div class="flex items-center gap-3">
-          <input type="checkbox" class="w-5 h-5">
-          <span>go to gym</span>
-        </div>
+      input.value = "";
+    });
 
-      </li>
-            <li class="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
-        
-        <div class="flex items-center gap-3">
-          <input type="checkbox" class="w-5 h-5">
-          <span>go for shopping</span>
-        </div>
-
-      </li>
-
-
-    </ul>
-
+    
+    list.addEventListener("change", function (e) {
+      if (e.target.classList.contains("check")) {
+        let text = e.target.nextElementSibling;
+        text.classList.toggle("line-through");
+      }
+    });
+  </script>
 
 </body>
-</html>
+</html> 
+
+
+
+
+<!-- <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="text">Hello</p>
+
+<button id="btn">Change</button>
+<script>
+  let text = document.getElementById('text')
+  let btn = document.getElementById('btn')
+
+      btn.addEventListener("click", function () {
+        if(text.textContent === "Hello") {
+          text.textContent = "Hello, Java!";
+        } else {
+          text.textContent = "Hello";
+        }
+      });
+
+</script>
+</body>
+</html> -->
