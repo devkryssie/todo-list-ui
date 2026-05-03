@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notes App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
+
+    <h2 class="text-xl text-center mb-3">Notes App</h2>
+
+    <textarea id="input" class="w-full border p-2 mb-2"></textarea>
+
+    <button id="add" class="w-full bg-blue-500 text-white p-2 mb-3">
+      Add
+    </button>
+
+    <div id="list"></div>
+
+  </div>
+
+
+
+
+
+
+
+
+  
+<script>
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+let input = document.getElementById("input");
+let add = document.getElementById("add");
+let list = document.getElementById("list");
+
+function show() {
+  list.innerHTML = "";
+
+  for (let i = 0; i < notes.length; i++) {
+    list.innerHTML += `
+      <div class="bg-gray-50 p-2 flex justify-between mb-2">
+        ${notes[i]}
+        <button onclick="del(${i})">x</button>
+      </div>
+    `;
+  }
+}
+
+add.onclick = function () {
+  if (input.value === "") return;
+
+  notes.push(input.value);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  input.value = "";
+  show();
+};
+
+function del(i) {
+  notes.splice(i, 1);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  show();
+}
+
+show();
+</script>
+
+</body>
+</html>

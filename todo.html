@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
+    
+    <h2 class="text-2xl font-semibold text-center mb-4">Todo App</h2>
+
+    <div class="flex gap-2 mb-4">
+      <input id="input" placeholder="Add a task"
+        class="flex-1 border p-2 rounded-lg outline-none">
+      <button id="add"
+        class="bg-blue-500 text-white px-4 rounded-lg">Add</button>
+    </div>
+
+    <ul id="list" class="space-y-2"></ul>
+
+  </div>
+
+<script>
+
+
+let data = localStorage.getItem("todos");
+
+let todos;
+
+if (data) {
+  todos = JSON.parse(data);   
+} else {
+  todos = [];
+}
+
+
+let input = document.getElementById("input");
+let add = document.getElementById("add");
+let list = document.getElementById("list");
+
+
+function show() {
+
+  list.innerHTML = "";
+
+  for (let i = 0; i < todos.length; i++) {
+
+    let li = document.createElement("li");
+    li.className = "flex justify-between items-center bg-gray-50 p-2 rounded-lg";
+
+    let text = document.createElement("span");
+    text.innerHTML = todos[i].text;
+
+    if (todos[i].done === true) {
+      text.className = "line-through text-gray-400";
+    }
+
+    let box = document.createElement("div");
+    box.className = "flex gap-2";
+
+    
+    let doneBtn = document.createElement("button");
+    doneBtn.innerHTML = "✔";
+    doneBtn.className = "bg-green-500 text-white px-2 rounded";
+
+    doneBtn.onclick = function () {
+
+      
+      if (todos[i].done === true) {
+        todos[i].done = false;
+      } else {
+        todos[i].done = true;
+      }
+
+      localStorage.setItem("todos", JSON.stringify(todos)); // SAVE
+      show(); // refresh screen
+    };
+
+    
+    let delBtn = document.createElement("button");
+    delBtn.innerHTML = "x";
+    delBtn.className = "bg-red-500 text-white px-2 rounded";
+
+    delBtn.onclick = function () {
+
+      todos.splice(i, 1); // remove item
+
+      localStorage.setItem("todos", JSON.stringify(todos)); // SAVE
+      show(); // refresh screen
+    };
+
+    box.appendChild(doneBtn);
+    box.appendChild(delBtn);
+
+    li.appendChild(text);
+    li.appendChild(box);
+
+    list.appendChild(li);
+  }
+}
+
+
+add.onclick = function () {
+
+  if (input.value === "") return;
+
+  let obj = {};
+  obj.text = input.value;
+  obj.done = false;
+
+  todos.push(obj); // ADD
+
+  localStorage.setItem("todos", JSON.stringify(todos)); // SAVE
+
+  input.value = "";
+
+  show(); // refresh
+};
+
+show();
+
+</script>
+
+</body>
+</html>

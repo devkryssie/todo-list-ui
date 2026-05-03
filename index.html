@@ -1,105 +1,129 @@
-<!DOCTYPE html >
+<!-- 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo App</title>
-
+  <title>Document</title>
   <link rel="stylesheet" href="src/output.css">
 </head>
-
-
-  <div class="bg-white w-96 p-6 rounded-2xl shadow-lg">
-
-    <h1 class="text-2xl font-bold text-center mb-2">My Todo List</h1>
-    <p class="text-gray-500 text-center mb-6">Task organized</p>
-
-    
-    <div class="flex gap-2 mb-6">
-      <input 
-        id="input"
-        type="text" 
-        placeholder="Add a new task..."
-        class="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-      >
-
-      <button 
-        id="addBtn"
-        class="bg-blue-500 text-white px-4 rounded-lg hover:bg-blue-600">
-        Add
-      </button>
-    </div>
-
-    
-    <ul id="list" class="space-y-3"></ul>
+<body>
+  <h1>color changer</h1>
+  <div style="height: 300px; width: 300px; border: 2px solid black;"></div>
+  <div>
+    <button id="blue">Blue</button>
+    <button id="red">Red</button>
+    <button id="orange">Orange</button>
+    <button id="reset">Reset</button>
 
   </div>
+  <script>
+    let color = document.querySelector("div")
+    let blue = document.querySelector("#blue")
+    let red = document.querySelector("#red")
+    let orange = document.querySelector("#orange")
+    let reset = document.querySelector("#reset")
 
+
+    blue.addEventListener("click",() => {
+      color.style.backgroundColor = "blue"
+    })
+      red.addEventListener("click",() => {
+      color.style.backgroundColor = "red"
+    })
+    orange.addEventListener("click",() => {
+      color.style.backgroundColor = "orange"
+    })
+    reset.addEventListener("click",() => {
+      color.style.backgroundColor = "white"
+    })
+
+  </script>
+</body>
+</html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Sound</title>
+</head>
+
+<body style=" font-family:sans-serif; padding-top:50px;">
+
+  <h2>Click button to play sound 🎧</h2> 
+
+
+  <audio id="sound" src="audio/WhatsApp Audio 2026-04-30 at 11.17.17 AM.aac"></audio>
+  <audio id="sound2" src="audio/faaa_sound.wav"></audio>
+  <audio id="sound3" src="audio/WhatsApp Audio 2026-04-30 at 8.53.43 AM.mpga"></audio>
+
+  <!-- <button id="btn" >Play Sound</button> -->
+   <div style="display:flex; gap: 10px;">
+    <button id="btn" style="
+      margin-top: 10px;
+      padding: 12px 25px;
+      border-radius: 1000px;
+      border: none;
+      background-color: blue;
+      color: white;
+      font-size: 16px;
+    ">
+      Play Sound
+    </button>
+    
+    <button id="btn2" style="
+      margin-top: 10px;
+      padding: 12px 25px;
+      border-radius: 1000px;
+      border: none;
+      background-color: purple;
+      color: white;
+      font-size: 16px;
+    ">
+      play sound 2
+    </button>
+
+        <button id="btn3" style="
+      margin-top: 10px;
+      padding: 12px 25px;
+      border-radius: 1000px;
+      border: none;
+      background-color: pink;
+      color: white;
+      font-size: 16px;
+    ">
+      play sound 3
+    </button>
+
+   </div>
 
   <script>
-    let input = document.getElementById("input");
-    let btn = document.getElementById("addBtn");
-    let list = document.getElementById("list");
+    let audio = document.getElementById("sound");
+    let btn = document.getElementById("btn");
 
-    // Add task
     btn.addEventListener("click", function () {
-      let value = input.value;
-
-      if (value === "") return;
-
-      let li = document.createElement("li");
-
-      li.className = "flex items-center justify-between bg-gray-100 p-3 rounded-lg";
-
-      li.innerHTML = `
-        <div class="flex items-center gap-3">
-          <input type="checkbox" class="check w-5 h-5">
-          <span>${value}</span>
-        </div>
-      `;
-
-      list.appendChild(li);
-
-      input.value = "";
+      audio.play();
     });
+
+
+
+
+        let audio2 = document.getElementById("sound2");
+    let btn2 = document.getElementById("btn2");
+
+    btn2.addEventListener("click", function () {
+      audio2.play();
+    });
+        let audio3 = document.getElementById("sound3");
+    let btn3 = document.getElementById("btn3");
+
+    btn3.addEventListener("click", function () {
+      audio3.play();
+    });
+
+
 
     
-    list.addEventListener("change", function (e) {
-      if (e.target.classList.contains("check")) {
-        let text = e.target.nextElementSibling;
-        text.classList.toggle("line-through");
-      }
-    });
   </script>
 
 </body>
-</html> 
-
-
-
-
-<!-- <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <p id="text">Hello</p>
-
-<button id="btn">Change</button>
-<script>
-  let text = document.getElementById('text')
-  let btn = document.getElementById('btn')
-
-      btn.addEventListener("click", function () {
-        if(text.textContent === "Hello") {
-          text.textContent = "Hello, Java!";
-        } else {
-          text.textContent = "Hello";
-        }
-      });
-
-</script>
-</body>
-</html> -->
+</html>
